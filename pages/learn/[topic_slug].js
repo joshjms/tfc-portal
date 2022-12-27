@@ -1,10 +1,14 @@
 import { useEffect } from "react";
 import axios from "axios";
 import { setCookie, getCookie, hasCookie, deleteCookie } from "cookies-next";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 import Navbar from "../../components/navbar";
 
 export default function Learn({ user, topic }) {
+    const { asPath } = useRouter();
+
     return (
         <>
             <Navbar user={user} />
@@ -27,7 +31,9 @@ export default function Learn({ user, topic }) {
                             }
                             key={i}
                         >
-                            <p>{e.title}</p>
+                            <Link href={`${asPath}/${e.slug}`}>
+                                <p>{e.title}</p>
+                            </Link>
                         </div>
                     ))}
                 </div>
@@ -57,10 +63,13 @@ export async function getServerSideProps({ req, res, params }) {
             return null;
         });
 
-    const { slug } = params;
+    const { topic_slug } = params;
 
     const topic = await axios
-        .get(process.env.NEXT_PUBLIC_API_BASE_URL + "learn/detail/" + slug, {})
+        .get(
+            process.env.NEXT_PUBLIC_API_BASE_URL + "learn/detail/" + topic_slug,
+            {}
+        )
         .then((response) => {
             if (response.status === 200) {
                 return response.data;

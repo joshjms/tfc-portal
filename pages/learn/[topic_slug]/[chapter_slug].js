@@ -2,24 +2,27 @@ import { useEffect } from "react";
 import axios from "axios";
 import { setCookie, getCookie, hasCookie, deleteCookie } from "cookies-next";
 
-import Navbar from "../components/navbar";
-import Carousel from "../components/carousel";
-import Progress from "../components/progress";
+import Navbar from "../../../components/navbar";
 
-export default function Learn({ user, topics }) {
+export default function Learn({ user, chapter }) {
+    const md = require("markdown-it")(),
+        mk = require("markdown-it-katex");
+    md.use(mk);
+    const result = md.render(chapter.content);
     return (
         <>
             <Navbar user={user} />
             <div className="w-[80%] mx-auto py-10">
-                <div className="flex h-max my-10">
-                    <Carousel user={user} slides={topics} />
-                </div>
+                <div
+                    className="unreset"
+                    dangerouslySetInnerHTML={{ __html: result }}
+                />
             </div>
         </>
     );
 }
 
-export async function getServerSideProps({ req, res }) {
+export async function getServerSideProps({ req, res, params }) {
     const token = hasCookie("token", { req, res })
         ? getCookie("token", { req, res })
         : null;
@@ -40,8 +43,15 @@ export async function getServerSideProps({ req, res }) {
             return null;
         });
 
-    const topics = await axios
-        .get(process.env.NEXT_PUBLIC_API_BASE_URL + "learn/list/", {})
+    const { topic_slug, chapter_slug } = params;
+
+    const chapter = await axios
+        .get(
+            process.env.NEXT_PUBLIC_API_BASE_URL +
+                "learn/chapter/" +
+                chapter_slug,
+            {}
+        )
         .then((response) => {
             if (response.status === 200) {
                 return response.data;
@@ -52,5 +62,5 @@ export async function getServerSideProps({ req, res }) {
             return null;
         });
 
-    return { props: { user, topics } };
+    return { props: { user, chapter } };
 }
