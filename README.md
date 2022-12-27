@@ -12,6 +12,8 @@ Here's the current progress by us.
 
 Here's a brief "how to get started" with Next JS. This is not an official documentation nor it is exhaustive in explaining the concepts of Next JS. This is just a compilation of oversimplifications to get you started with this project. 
 
+After you have pulled this entire repository, what you can do is open command prompt and type in `npm run dev` in the folder containing the repository. The website will appear in `http://localhost:3000`. 
+
 `/pages` contains the pages in the website. For example `/pages/index.js` will serve as `https://website/`, `/pages/amongus.js` will render `https://website/amongus` and `/pages/[id].js` will render `https://website/1` (it can be any number not just 1). 
 
 `/components` contains the other React components I used in making this website to simplify things. 
