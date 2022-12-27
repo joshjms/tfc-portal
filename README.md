@@ -1,34 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TFC Portal
 
-## Getting Started
+The front-end to TFC's portal which you should be able to access once it is deployed. The website is supposed to serve competitive programming tutorials, problem editorials, and an open blog system. 
 
-First, run the development server:
+Here's the current progress by us. 
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+[] Tutorials
+[] Problems
+[] Blog
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### For Developers
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Here's a brief "how to get started" with Next JS. This is not an official documentation nor it is exhaustive in explaining the concepts of Next JS. This is just a compilation of oversimplifications to get you started with this project. 
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+`/pages` contains the pages in the website. For example `/pages/index.js` will serve as `https://website/`, `/pages/amongus.js` will render `https://website/amongus` and `/pages/[id].js` will render `https://website/1` (it can be any number not just 1). 
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+`/components` contains the other React components I used in making this website to simplify things. 
 
-## Learn More
+This project uses [axios](https://axios-http.com/docs/intro) to call the backend, and you can access and view the backend repository in this [link](https://github.com/joshjms/pyjudge). 
 
-To learn more about Next.js, take a look at the following resources:
+If there are any questions, feel free to message me in Discord, Telegram, or Whatsapp (if you are assigned to this project, you should know how to contact me). I am still new around these parts, please be kind to me UwU. 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Afterword
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+For the developers I trust so much to take part in this project with me, do **NOT** push randomly to main.
