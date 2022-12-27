@@ -4,9 +4,9 @@ The front-end to TFC's portal which you should be able to access once it is depl
 
 Here's the current progress by us. 
 
-[] Tutorials
-[] Problems
-[] Blog
+- [x] Tutorials
+- [ ] Problems
+- [ ] Blog
 
 ### For Developers
 
