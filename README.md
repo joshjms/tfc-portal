@@ -18,6 +18,8 @@ Here's a brief "how to get started" with Next JS. This is not an official docume
 
 This project uses [axios](https://axios-http.com/docs/intro) to call the backend, and you can access and view the backend repository in this [link](https://github.com/joshjms/pyjudge). 
 
+For the designs, I mainly use TailwindCSS and DaisyUI - and yes, I cannot design properly so if anyone wants to fix the UI that would be awesome. 
+
 If there are any questions, feel free to message me in Discord, Telegram, or Whatsapp (if you are assigned to this project, you should know how to contact me). I am still new around these parts, please be kind to me UwU. 
 
 ### Afterword
