@@ -5,16 +5,17 @@ import { setCookie, getCookie, hasCookie, deleteCookie } from "cookies-next";
 import Navbar from "../../../components/navbar";
 
 export default function Learn({ user, chapter }) {
-    const md = require("markdown-it")(),
-        mk = require("markdown-it-katex");
-    md.use(mk);
+    const md = require("markdown-it")()
+        .use(require("markdown-it-katex"))
+        .use(require('markdown-it-sub'));
+
     const result = md.render(chapter.content);
     return (
         <>
             <Navbar user={user} />
-            <div className="w-[80%] mx-auto py-10">
+            <div className="w-[80%] md:w-[60%] lg:w-[50%] mx-auto py-10">
                 <div
-                    className="unreset"
+                    className="markdown-body font-sans"
                     dangerouslySetInnerHTML={{ __html: result }}
                 />
             </div>

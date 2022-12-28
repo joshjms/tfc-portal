@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
     return (
-        <Html lang="en" data-theme="winter">
+        <Html lang="en" data-theme="lofi">
             <Head>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link
@@ -21,7 +21,10 @@ export default function Document() {
                 />
                 <link
                     rel="stylesheet"
-                    href="https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"
+                    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown-light.css"
+                    integrity="sha512-1d9gwwC3dNW3O+lGwY8zTQrh08a41Ejci46DdzY1aQbqi/7Qr8Asp4ycWPsoD52tKXKrgu8h/lSpig1aAkvlMw=="
+                    crossorigin="anonymous"
+                    referrerpolicy="no-referrer"
                 />
             </Head>
             <body>

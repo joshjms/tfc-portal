@@ -9,6 +9,35 @@ import Navbar from "../../components/navbar";
 export default function Learn({ user, topic }) {
     const { asPath } = useRouter();
 
+    if (!user) {
+        return (
+            <>
+                <Navbar user={user} />
+                <div className="w-[80%] mx-auto py-10">
+                    <div className="w-80 lg:w-96 mb-10">
+                        <h2 className="font-light text-3xl mb-3">
+                            {topic.name}
+                        </h2>
+                        <p>{topic.desc}</p>
+                    </div>
+
+                    <div className="">
+                        {topic.chapter.map((e, i) => (
+                            <div
+                                className="bg-base-200 p-5 rounded-2xl mb-3 flex justify-between items-center"
+                                key={i}
+                            >
+                                <Link href={`${asPath}/${e.slug}`}>
+                                    <p>{e.title}</p>
+                                </Link>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </>
+        );
+    }
+
     return (
         <>
             <Navbar user={user} />
