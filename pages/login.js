@@ -11,13 +11,10 @@ export default function Login() {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
-    const [isLoading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        setLoading(true);
         const token = await axios
             .post(process.env.NEXT_PUBLIC_AUTH_BASE_URL + "token/login/", {
                 username,
@@ -28,15 +25,11 @@ export default function Login() {
                     setCookie("token", response.data.auth_token);
                     router.back();
                 }
-                setLoading(false);
             })
             .catch((error) => {
                 setMessage("Wrong username or password.");
-                setLoading(false);
             });
     };
-
-    if (isLoading) return <></>;
 
     const msg = message ? <p className="mb-3 text-xs text-warning">{message}</p> : null;
 
