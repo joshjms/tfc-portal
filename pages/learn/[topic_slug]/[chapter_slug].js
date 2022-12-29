@@ -33,7 +33,7 @@ export default function Chapter({ chapter }) {
     );
 }
 
-export async function getServerSideProps({ req, res, params }) {
+export async function getStaticProps({ req, res, params }) {
     res.setHeader(
         "Cache-Control",
         "public, s-maxage=10, stale-while-revalidate=59"
