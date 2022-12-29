@@ -1,15 +1,25 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { setCookie, getCookie, hasCookie, deleteCookie } from "cookies-next";
 
 import Navbar from "../../../components/navbar";
 
-export default function Learn({ user, chapter }) {
+export default function Chapter({ chapter }) {
+
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        if (localStorage.getItem("user")) {
+            setUser(JSON.parse(localStorage.getItem("user")));
+        }
+    }, []);
+
     const md = require("markdown-it")()
         .use(require("markdown-it-katex"))
         .use(require('markdown-it-sub'));
 
     const result = md.render(chapter.content);
+
     return (
         <>
             <Navbar user={user} />
@@ -24,27 +34,12 @@ export default function Learn({ user, chapter }) {
 }
 
 export async function getServerSideProps({ req, res, params }) {
-    const token = hasCookie("token", { req, res })
-        ? getCookie("token", { req, res })
-        : null;
+    res.setHeader(
+        "Cache-Control",
+        "public, s-maxage=10, stale-while-revalidate=59"
+    );
 
-    const user = await axios
-        .get(process.env.NEXT_PUBLIC_API_BASE_URL + "user/", {
-            headers: {
-                authorization: `Token ${token}`,
-            },
-        })
-        .then((response) => {
-            if (response.status === 200) {
-                return response.data;
-            }
-            return null;
-        })
-        .catch((error) => {
-            return null;
-        });
-
-    const { topic_slug, chapter_slug } = params;
+    const { chapter_slug } = params;
 
     const chapter = await axios
         .get(
@@ -63,5 +58,5 @@ export async function getServerSideProps({ req, res, params }) {
             return null;
         });
 
-    return { props: { user, chapter } };
+    return { props: { chapter } };
 }

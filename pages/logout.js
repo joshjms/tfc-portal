@@ -3,6 +3,7 @@ import axios from "axios";
 import { getCookie, hasCookie, deleteCookie } from "cookies-next";
 
 import { useRouter } from "next/router";
+import Loading from "../components/loading";
 
 export default function Logout() {
     const router = useRouter();
@@ -18,6 +19,7 @@ export default function Logout() {
         .then((response) => {
             if(response.status === 204) {
                 if(hasCookie('token')) deleteCookie('token');
+                localStorage.removeItem('user');
                 router.push("/");
             }
         })
@@ -32,6 +34,6 @@ export default function Logout() {
     }, []);
 
     return (
-        <></>
+        <Loading />
     );
 }

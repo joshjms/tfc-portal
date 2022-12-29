@@ -1,11 +1,19 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { setCookie, getCookie, hasCookie, deleteCookie } from "cookies-next";
 
 import Navbar from "../../components/navbar";
 import Carousel from "../../components/carousel";
 
-export default function Learn({ user, topics }) {
+export default function Learn({ topics }) {
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        if (localStorage.getItem("user")) {
+            setUser(JSON.parse(localStorage.getItem("user")));
+        }
+    }, []);
+
     return (
         <>
             <Navbar user={user} />
@@ -18,27 +26,7 @@ export default function Learn({ user, topics }) {
     );
 }
 
-export async function getServerSideProps({ req, res }) {
-    const token = hasCookie("token", { req, res })
-        ? getCookie("token", { req, res })
-        : null;
-
-    const user = await axios
-        .get(process.env.NEXT_PUBLIC_API_BASE_URL + "user/", {
-            headers: {
-                authorization: `Token ${token}`,
-            },
-        })
-        .then((response) => {
-            if (response.status === 200) {
-                return response.data;
-            }
-            return null;
-        })
-        .catch((error) => {
-            return null;
-        });
-
+export async function getStaticProps({ req, res }) {
     const topics = await axios
         .get(process.env.NEXT_PUBLIC_API_BASE_URL + "learn/list/", {})
         .then((response) => {
@@ -51,5 +39,5 @@ export async function getServerSideProps({ req, res }) {
             return null;
         });
 
-    return { props: { user, topics } };
+    return { props: { topics } };
 }

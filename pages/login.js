@@ -5,6 +5,7 @@ import axios from "axios";
 import { setCookie, getCookie, hasCookie, deleteCookie } from "cookies-next";
 
 import { useRouter } from "next/router";
+import Loading from "../components/loading";
 
 export default function Login() {
     const router = useRouter();
@@ -13,9 +14,37 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
 
+    const [isLoading, setLoading] = useState(false);
+
+    const getUser = async () => {
+        const token = hasCookie("token")
+            ? getCookie("token")
+            : null;
+
+        await axios
+            .get(process.env.NEXT_PUBLIC_API_BASE_URL + "user/", {
+                headers: {
+                    authorization: `Token ${token}`,
+                },
+            })
+            .then((response) => {
+                if (response.status === 200) {
+                    localStorage.setItem("user", JSON.stringify(response.data));
+                    setLoading(false);
+                    router.back();
+                }
+                return null;
+            })
+            .catch((error) => {
+                setLoading(false);
+                return null;
+            });
+    };
+
     const handleLogin = async (e) => {
         e.preventDefault();
-        const token = await axios
+        setLoading(true);
+        await axios
             .post(process.env.NEXT_PUBLIC_AUTH_BASE_URL + "token/login/", {
                 username,
                 password,
@@ -23,15 +52,20 @@ export default function Login() {
             .then((response) => {
                 if (response.status === 200) {
                     setCookie("token", response.data.auth_token);
-                    router.back();
+                    getUser();
                 }
             })
             .catch((error) => {
                 setMessage("Wrong username or password.");
+                setLoading(false);
             });
     };
 
-    const msg = message ? <p className="mb-3 text-xs text-warning">{message}</p> : null;
+    const msg = message ? (
+        <p className="mb-3 text-xs text-warning">{message}</p>
+    ) : null;
+
+    if(isLoading) return <Loading />
 
     return (
         <div className="flex">

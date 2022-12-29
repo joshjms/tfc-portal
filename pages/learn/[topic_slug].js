@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { setCookie, getCookie, hasCookie, deleteCookie } from "cookies-next";
 import Link from "next/link";
@@ -6,8 +6,16 @@ import { useRouter } from "next/router";
 
 import Navbar from "../../components/navbar";
 
-export default function Learn({ user, topic }) {
+export default function Topic({ topic }) {
     const { asPath } = useRouter();
+
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        if (localStorage.getItem("user")) {
+            setUser(JSON.parse(localStorage.getItem("user")));
+        }
+    }, []);
 
     if (!user) {
         return (
@@ -71,25 +79,10 @@ export default function Learn({ user, topic }) {
 }
 
 export async function getServerSideProps({ req, res, params }) {
-    const token = hasCookie("token", { req, res })
-        ? getCookie("token", { req, res })
-        : null;
-
-    const user = await axios
-        .get(process.env.NEXT_PUBLIC_API_BASE_URL + "user/", {
-            headers: {
-                authorization: `Token ${token}`,
-            },
-        })
-        .then((response) => {
-            if (response.status === 200) {
-                return response.data;
-            }
-            return null;
-        })
-        .catch((error) => {
-            return null;
-        });
+    res.setHeader(
+        "Cache-Control",
+        "public, s-maxage=10, stale-while-revalidate=59"
+    );
 
     const { topic_slug } = params;
 
@@ -108,5 +101,5 @@ export async function getServerSideProps({ req, res, params }) {
             return null;
         });
 
-    return { props: { user, topic } };
+    return { props: { topic } };
 }
