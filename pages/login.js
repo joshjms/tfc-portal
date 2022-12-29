@@ -12,8 +12,11 @@ export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+    const [isLoading, setLoading] = useState(false);
+
     const handleLogin = async (e) => {
         e.preventDefault();
+        setLoading(true);
         const token = await axios
             .post(process.env.NEXT_PUBLIC_AUTH_BASE_URL + "token/login/", {
                 username,
@@ -21,12 +24,17 @@ export default function Login() {
             })
             .then((response) => {
                 if (response.status === 200) {
-                    setCookie('token', response.data.auth_token);
+                    setCookie("token", response.data.auth_token);
                     router.back();
                 }
+                setLoading(false);
             })
-            .catch((error) => {});
+            .catch((error) => {
+                setLoading(false);
+            });
     };
+
+    if (isLoading) return <></>;
 
     return (
         <div className="flex">

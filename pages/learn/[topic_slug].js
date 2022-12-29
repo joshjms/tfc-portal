@@ -49,21 +49,20 @@ export default function Learn({ user, topic }) {
 
                 <div className="">
                     {topic.chapter.map((e, i) => (
-                        <div
-                            className={
-                                (user.account.solved.findIndex(
-                                    (f) => e.id === f.id
-                                ) != -1
-                                    ? "bg-success "
-                                    : "bg-base-200 ") +
-                                "p-5 rounded-2xl mb-3 flex justify-between items-center"
-                            }
-                            key={i}
-                        >
-                            <Link href={`${asPath}/${e.slug}`}>
+                        <Link href={`${asPath}/${e.slug}`} key={i}>
+                            <div
+                                className={
+                                    (user.account.solved.findIndex(
+                                        (f) => e.id === f.id
+                                    ) != -1
+                                        ? "bg-success "
+                                        : "bg-base-200 ") +
+                                    "p-5 rounded-2xl mb-3 flex justify-between items-center"
+                                }
+                            >
                                 <p>{e.title}</p>
-                            </Link>
-                        </div>
+                            </div>
+                        </Link>
                     ))}
                 </div>
             </div>
