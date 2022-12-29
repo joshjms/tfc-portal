@@ -38,7 +38,7 @@ export default function Login() {
 
     if (isLoading) return <></>;
 
-    const msg = message ? <p className="mb-2">message</p> : null;
+    const msg = message ? <p className="mb-3 text-xs text-warning">{message}</p> : null;
 
     return (
         <div className="flex">
