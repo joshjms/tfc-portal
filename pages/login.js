@@ -13,6 +13,7 @@ export default function Login() {
     const [password, setPassword] = useState("");
 
     const [isLoading, setLoading] = useState(false);
+    const [message, setMessage] = useState("");
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -30,11 +31,14 @@ export default function Login() {
                 setLoading(false);
             })
             .catch((error) => {
+                setMessage("Wrong username or password.");
                 setLoading(false);
             });
     };
 
     if (isLoading) return <></>;
+
+    const msg = message ? <p className="mb-2">message</p> : null;
 
     return (
         <div className="flex">
@@ -66,14 +70,15 @@ export default function Login() {
                             className="input input-bordered w-full mb-3"
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                        <p className="mb-2">
+                        {msg}
+                        {/* <p className="mb-2">
                             <Link
                                 href="#"
                                 className="text-xs font-medium text-primary"
                             >
                                 Forgot password
                             </Link>
-                        </p>
+                        </p> */}
                         <button className="btn btn-primary w-full">
                             Sign In
                         </button>
