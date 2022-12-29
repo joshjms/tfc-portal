@@ -78,12 +78,30 @@ export default function Topic({ topic }) {
     );
 }
 
-export async function getStaticProps({ req, res, params }) {
-    res.setHeader(
-        "Cache-Control",
-        "public, s-maxage=10, stale-while-revalidate=59"
-    );
+export async function getStaticPaths() {
+    const topics = await axios
+        .get(process.env.NEXT_PUBLIC_API_BASE_URL + "learn/list/", {})
+        .then((response) => {
+            if (response.status === 200) {
+                return response.data;
+            }
+            return null;
+        })
+        .catch((error) => {
+            return null;
+        });
 
+    return {
+        paths: topics.map((e) => ({
+            params: {
+                topic_slug: e.slug,
+            },
+        })),
+        fallback: false,
+    };
+}
+
+export async function getStaticProps({ req, res, params }) {
     const { topic_slug } = params;
 
     const topic = await axios
