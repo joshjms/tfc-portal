@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 import Navbar from "../../components/navbar";
+import Head from "next/head";
 
 export default function Topic({ topic }) {
     const { asPath } = useRouter();
@@ -20,6 +21,9 @@ export default function Topic({ topic }) {
     if (!user) {
         return (
             <>
+                <Head>
+                    <title>{topic.name}</title>
+                </Head>
                 <Navbar user={user} />
                 <div className="w-[80%] mx-auto py-10">
                     <div className="w-80 lg:w-96 mb-10">
@@ -48,6 +52,9 @@ export default function Topic({ topic }) {
 
     return (
         <>
+            <Head>
+                <title>{topic.name}</title>
+            </Head>
             <Navbar user={user} />
             <div className="w-[80%] mx-auto py-10">
                 <div className="w-80 lg:w-96 mb-10">
@@ -97,7 +104,7 @@ export async function getStaticPaths() {
                 topic_slug: e.slug,
             },
         })),
-        fallback: false,
+        fallback: "blocking",
     };
 }
 
@@ -119,5 +126,5 @@ export async function getStaticProps({ req, res, params }) {
             return null;
         });
 
-    return { props: { topic } };
+    return { props: { topic }, revalidate: 10 };
 }

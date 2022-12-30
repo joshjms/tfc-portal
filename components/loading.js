@@ -5,7 +5,7 @@ export default function Loading () {
         <div className="h-screen w-full flex items-center justify-center flex-col gap-4">
             <img src="/pearl.jpg" alt="loading" />
 
-            <h2 className="text-2xl">Please wait for a moment...</h2>
+            <h2 className="text-2xl font-extralight">Please wait for a moment...</h2>
         </div>
     )
 }

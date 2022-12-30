@@ -3,6 +3,7 @@ import axios from "axios";
 import { setCookie, getCookie, hasCookie, deleteCookie } from "cookies-next";
 
 import Navbar from "../../../components/navbar";
+import Head from "next/head";
 
 export default function Chapter({ chapter }) {
     const [user, setUser] = useState(null);
@@ -21,6 +22,20 @@ export default function Chapter({ chapter }) {
 
     return (
         <>
+            <Head>
+                <title>{chapter.title}</title>
+                <link
+                    rel="stylesheet"
+                    href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"
+                />
+                <link
+                    rel="stylesheet"
+                    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown-light.css"
+                    integrity="sha512-1d9gwwC3dNW3O+lGwY8zTQrh08a41Ejci46DdzY1aQbqi/7Qr8Asp4ycWPsoD52tKXKrgu8h/lSpig1aAkvlMw=="
+                    crossorigin="anonymous"
+                    referrerpolicy="no-referrer"
+                />
+            </Head>
             <Navbar user={user} />
             <div className="w-[80%] md:w-[60%] lg:w-[50%] mx-auto py-10">
                 <div
@@ -46,15 +61,17 @@ export async function getStaticPaths() {
         });
 
     return {
-        paths: topics.map((e) =>
-            e.chapter.map((f) => ({
-                params: {
-                    topic_slug: e.slug,
-                    chapter_slug: f.slug,
-                },
-            }))
-        ).flat(),
-        fallback: false,
+        paths: topics
+            .map((e) =>
+                e.chapter.map((f) => ({
+                    params: {
+                        topic_slug: e.slug,
+                        chapter_slug: f.slug,
+                    },
+                }))
+            )
+            .flat(),
+        fallback: 'blocking',
     };
 }
 
@@ -78,5 +95,5 @@ export async function getStaticProps({ req, res, params }) {
             return null;
         });
 
-    return { props: { chapter } };
+    return { props: { chapter }, revalidate: 10, };
 }

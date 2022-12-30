@@ -4,6 +4,7 @@ import { setCookie, getCookie, hasCookie, deleteCookie } from "cookies-next";
 
 import Navbar from "../../components/navbar";
 import Carousel from "../../components/carousel";
+import Head from "next/head";
 
 export default function Learn({ topics }) {
     const [user, setUser] = useState(null);
@@ -16,6 +17,9 @@ export default function Learn({ topics }) {
 
     return (
         <>
+            <Head>
+                <title>TFC - Learn</title>
+            </Head>
             <Navbar user={user} />
             <div className="w-[80%] mx-auto py-10">
                 <div className="flex h-max my-10">
@@ -39,5 +43,8 @@ export async function getStaticProps({ req, res }) {
             return null;
         });
 
-    return { props: { topics } };
+    return {
+        props: { topics },
+        revalidate: 10,
+    };
 }
