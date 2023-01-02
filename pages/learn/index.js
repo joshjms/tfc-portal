@@ -5,15 +5,10 @@ import { setCookie, getCookie, hasCookie, deleteCookie } from "cookies-next";
 import Navbar from "../../components/navbar";
 import Carousel from "../../components/carousel";
 import Head from "next/head";
+import { useCurrentUser } from "../../hooks/useCurrentUser";
 
 export default function Learn({ topics }) {
-    const [user, setUser] = useState(null);
-
-    useEffect(() => {
-        if (localStorage.getItem("user")) {
-            setUser(JSON.parse(localStorage.getItem("user")));
-        }
-    }, []);
+    const user = useCurrentUser();
 
     return (
         <>

@@ -6,49 +6,12 @@ import { useRouter } from "next/router";
 
 import Navbar from "../../components/navbar";
 import Head from "next/head";
+import { useCurrentUser } from "../../hooks/useCurrentUser";
 
 export default function Topic({ topic }) {
     const { asPath } = useRouter();
 
-    const [user, setUser] = useState(null);
-
-    useEffect(() => {
-        if (localStorage.getItem("user")) {
-            setUser(JSON.parse(localStorage.getItem("user")));
-        }
-    }, []);
-
-    if (!user) {
-        return (
-            <>
-                <Head>
-                    <title>{topic.name}</title>
-                </Head>
-                <Navbar user={user} />
-                <div className="w-[80%] mx-auto py-10">
-                    <div className="w-80 lg:w-96 mb-10">
-                        <h2 className="font-light text-3xl mb-3">
-                            {topic.name}
-                        </h2>
-                        <p>{topic.desc}</p>
-                    </div>
-
-                    <div className="">
-                        {topic.chapter.map((e, i) => (
-                            <div
-                                className="bg-base-200 p-5 rounded-2xl mb-3 flex justify-between items-center"
-                                key={i}
-                            >
-                                <Link href={`${asPath}/${e.slug}`}>
-                                    <p>{e.title}</p>
-                                </Link>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </>
-        );
-    }
+    const user = useCurrentUser();
 
     return (
         <>
@@ -65,16 +28,7 @@ export default function Topic({ topic }) {
                 <div className="">
                     {topic.chapter.map((e, i) => (
                         <Link href={`${asPath}/${e.slug}`} key={i}>
-                            <div
-                                className={
-                                    (user.account.solved.findIndex(
-                                        (f) => e.id === f.id
-                                    ) != -1
-                                        ? "bg-success "
-                                        : "bg-base-200 ") +
-                                    "p-5 rounded-2xl mb-3 flex justify-between items-center"
-                                }
-                            >
+                            <div className="bg-base-200 p-5 rounded-sm mb-3 flex justify-between items-center">
                                 <p>{e.title}</p>
                             </div>
                         </Link>

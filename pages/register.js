@@ -24,7 +24,6 @@ export default function Login() {
                 re_password,
             })
             .then((response) => {
-                console.log(response);
                 if (response.status === 201) {
                     router.push("/login/");
                 }

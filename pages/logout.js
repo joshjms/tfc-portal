@@ -9,31 +9,14 @@ export default function Logout() {
     const router = useRouter();
 
     const handleLogout = () => {
-        const token = hasCookie('token') ? getCookie('token') : null;
-
-        axios.post(process.env.NEXT_PUBLIC_AUTH_BASE_URL + "token/logout/", token, {
-            headers: {
-                Authorization: "Token " + token,
-            },
-        })
-        .then((response) => {
-            if(response.status === 204) {
-                if(hasCookie('token')) deleteCookie('token');
-                localStorage.removeItem('user');
-                router.push("/");
-            }
-        })
-        .catch((error) => {
-            router.push("/");
-        })
+        if (hasCookie("token")) deleteCookie("token");
+        localStorage.removeItem("user");
+        router.push("/");
     };
-    
 
     useEffect(() => {
         handleLogout();
     }, []);
 
-    return (
-        <Loading />
-    );
+    return <Loading />;
 }

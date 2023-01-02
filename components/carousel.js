@@ -12,6 +12,8 @@ import { Navigation } from "swiper";
 import CourseCard from "./coursecard";
 
 export default function Carousel({ user, slides }) {
+    console.log(user);
+    
     if (!user) {
         return (
             <>
@@ -71,14 +73,14 @@ export default function Carousel({ user, slides }) {
                 className="hidden lg:block"
             >
                 {slides.map((e, i) => {
-                    const solved = user.account.solved.filter((f) =>
+                    const read = user.account.read.filter((f) =>
                         e.chapter.some((g) => f.id === g.id)
                     );
 
                     const progress =
                         e.chapter.length === 0
                             ? 0
-                            : (solved.length / e.chapter.length) * 100;
+                            : (read.length / e.chapter.length) * 100;
 
                     return (
                         <SwiperSlide key={i}>
@@ -101,14 +103,14 @@ export default function Carousel({ user, slides }) {
                 className="lg:hidden"
             >
                 {slides.map((e, i) => {
-                    const solved = user.account.solved.filter((f) =>
+                    const read = user.account.read.filter((f) =>
                         e.chapter.some((g) => f.id === g.id)
                     );
 
                     const progress =
                         e.chapter.length === 0
                             ? 0
-                            : (solved.length / e.chapter.length) * 100;
+                            : (read.length / e.chapter.length) * 100;
 
                     return (
                         <SwiperSlide key={i}>

@@ -24,7 +24,7 @@ export default function Login() {
         await axios
             .get(process.env.NEXT_PUBLIC_API_BASE_URL + "user/", {
                 headers: {
-                    authorization: `Token ${token}`,
+                    authorization: `JWT ${token}`,
                 },
             })
             .then((response) => {
@@ -45,13 +45,13 @@ export default function Login() {
         e.preventDefault();
         setLoading(true);
         await axios
-            .post(process.env.NEXT_PUBLIC_AUTH_BASE_URL + "token/login/", {
+            .post(process.env.NEXT_PUBLIC_AUTH_BASE_URL + "jwt/create/", {
                 username,
                 password,
             })
             .then((response) => {
                 if (response.status === 200) {
-                    setCookie("token", response.data.auth_token);
+                    setCookie("token", response.data.access);
                     getUser();
                 }
             })

@@ -4,15 +4,10 @@ import { setCookie, getCookie, hasCookie, deleteCookie } from "cookies-next";
 
 import Navbar from "../../../components/navbar";
 import Head from "next/head";
+import { useCurrentUser } from "../../../hooks/useCurrentUser";
 
 export default function Chapter({ chapter }) {
-    const [user, setUser] = useState(null);
-
-    useEffect(() => {
-        if (localStorage.getItem("user")) {
-            setUser(JSON.parse(localStorage.getItem("user")));
-        }
-    }, []);
+    const user = useCurrentUser();
 
     const md = require("markdown-it")()
         .use(require("markdown-it-katex"))
@@ -42,6 +37,14 @@ export default function Chapter({ chapter }) {
                     className="markdown-body font-sans"
                     dangerouslySetInnerHTML={{ __html: result }}
                 />
+
+                <hr className="my-5"></hr>
+
+                <div className="flex gap-2 flex-wrap">
+                    <button className="btn btn-success">Finish Reading</button>
+                    <button className="btn btn-ghost">Edit</button>
+                    <button className="btn btn-ghost">Delete</button>
+                </div>
             </div>
         </>
     );
@@ -71,7 +74,7 @@ export async function getStaticPaths() {
                 }))
             )
             .flat(),
-        fallback: 'blocking',
+        fallback: "blocking",
     };
 }
 
@@ -95,5 +98,5 @@ export async function getStaticProps({ req, res, params }) {
             return null;
         });
 
-    return { props: { chapter }, revalidate: 10, };
+    return { props: { chapter }, revalidate: 10 };
 }
