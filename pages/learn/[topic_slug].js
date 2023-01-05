@@ -11,7 +11,7 @@ import { useCurrentUser } from "../../hooks/useCurrentUser";
 export default function Topic({ topic }) {
     const { asPath } = useRouter();
 
-    const user = useCurrentUser();
+    const [user, authenticated] = useCurrentUser();
 
     return (
         <>

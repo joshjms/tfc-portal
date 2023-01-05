@@ -7,7 +7,7 @@ import Head from "next/head";
 import { useCurrentUser } from "../../../hooks/useCurrentUser";
 
 export default function Chapter({ chapter }) {
-    const user = useCurrentUser();
+    const [user, authenticated] = useCurrentUser();
 
     const md = require("markdown-it")()
         .use(require("markdown-it-katex"))

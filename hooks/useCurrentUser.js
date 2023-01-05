@@ -13,6 +13,7 @@ const isTokenExpired = (token) => {
 
 export function useCurrentUser() {
     const [user, setUser] = useState(null);
+    const [authenticated, setAuthenticated] = useState();
 
     useEffect(() => {
         const token = hasCookie("token") ? getCookie("token") : null;
@@ -24,8 +25,10 @@ export function useCurrentUser() {
 
         if (localStorage.getItem("user")) {
             setUser(JSON.parse(localStorage.getItem("user")));
+            setAuthenticated(true);
         }
+        else setAuthenticated(false);
     }, []);
 
-    return user;
+    return [user, authenticated];
 }

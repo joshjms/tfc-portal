@@ -8,7 +8,7 @@ import Head from "next/head";
 import { useCurrentUser } from "../../hooks/useCurrentUser";
 
 export default function Learn({ topics }) {
-    const user = useCurrentUser();
+    const [user, authenticated] = useCurrentUser();
 
     return (
         <>

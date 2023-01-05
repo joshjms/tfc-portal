@@ -1,10 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { setCookie, getCookie, hasCookie, deleteCookie } from "cookies-next";
 
 import { useRouter } from "next/router";
+import { useCurrentUser } from "../hooks/useCurrentUser";
+import Loading from "../components/loading";
 
 export default function Login() {
     const router = useRouter();
@@ -14,8 +16,19 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const [re_password, setRe_Password] = useState("");
 
+    const [message, setMessage] = useState("");
+    const [isLoading, setLoading] = useState(false);
+
+    const [user, authenticated] = useCurrentUser();
+
+    useEffect(()=> {
+        if(authenticated === true)
+            router.push('/');
+    }, [authenticated]);
+
     const handleLogin = async (e) => {
         e.preventDefault();
+        setLoading(true);
         const token = await axios
             .post(process.env.NEXT_PUBLIC_AUTH_BASE_URL + "users/", {
                 email,
@@ -29,9 +42,17 @@ export default function Login() {
                 }
             })
             .catch((error) => {
-                console.log(error);
+                const err_msg = (error.response.data.username || error.response.data.password || error.response.data.non_field_errors);
+                setMessage(err_msg[0]);
+                setLoading(false);
             });
     };
+
+    const msg = message ? (
+        <p className="mb-3 text-xs text-warning">{message}</p>
+    ) : null;
+
+    if (isLoading) return <Loading />
 
     return (
         <div className="flex">
@@ -53,6 +74,7 @@ export default function Login() {
                             placeholder="Enter your email address"
                             className="input input-bordered w-full mb-3"
                             onChange={(e) => setEmail(e.target.value)}
+                            value={email}
                         />
                         <p className="text-xs text-gray-600 mb-2 font-medium">
                             Username
@@ -62,6 +84,7 @@ export default function Login() {
                             placeholder="Enter your username"
                             className="input input-bordered w-full mb-3"
                             onChange={(e) => setUsername(e.target.value)}
+                            value={username}
                         />
                         <p className="text-xs text-gray-600 mb-2 font-medium">
                             Password
@@ -81,6 +104,7 @@ export default function Login() {
                             className="input input-bordered w-full mb-3"
                             onChange={(e) => setPassword(e.target.value)}
                         />
+                        {msg}
                         <button className="btn btn-primary w-full mt-3">
                             Sign Up
                         </button>
