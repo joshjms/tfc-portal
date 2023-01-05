@@ -42,13 +42,16 @@ export default function CourseCard({ mod, progress }) {
                 ></div>
             </div>
             <div className="card-body text-center">
-                <Link href={"/learn/" + mod.slug}>
-                    <h2 className="font-semibold text-xl text-center text-secondary hover:underline">
-                        {mod.name}
-                    </h2>
-                </Link>
+                <h2 className="font-semibold text-xl text-center text-primary">
+                    {mod.name}
+                </h2>
 
                 <p>{mod.desc}</p>
+                <div className="card-actions justify-center mt-3">
+                    <Link href={"/learn/" + mod.slug}>
+                        <button className="btn btn-primary btn-wide">Enter</button>
+                    </Link>
+                </div>
             </div>
         </div>
     );

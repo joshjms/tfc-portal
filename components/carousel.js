@@ -12,8 +12,6 @@ import { Navigation } from "swiper";
 import CourseCard from "./coursecard";
 
 export default function Carousel({ user, slides }) {
-    console.log(user);
-    
     if (!user) {
         return (
             <>

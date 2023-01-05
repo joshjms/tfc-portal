@@ -8,4 +8,23 @@ module.exports = {
         extend: {},
     },
     plugins: [require("daisyui")],
+
+    daisyui: {
+        themes: [
+            {
+                halloween: {
+                    ...require("daisyui/src/colors/themes")[
+                        "[data-theme=halloween]"
+                    ],
+                    "--rounded-box": "0.25rem",
+                    "--rounded-btn": "0.125rem",
+                    "--rounded-badge": "0.125rem",
+                    "--animation-btn": "0",
+                    "--animation-input": "0",
+                    "--btn-focus-scale": "1",
+                    "--tab-radius": "0",
+                },
+            },
+        ],
+    },
 };

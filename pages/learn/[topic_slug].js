@@ -33,7 +33,7 @@ export default function Topic({ topic }) {
                             </Link>
 
                             <div className="flex gap-1">
-                                <div className="btn btn-outline">
+                                <div className="btn btn-primary">
                                     Edit
                                 </div>
                                 <div className="btn btn-outline">
