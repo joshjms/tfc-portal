@@ -27,11 +27,20 @@ export default function Topic({ topic }) {
 
                 <div className="">
                     {topic.chapter.map((e, i) => (
-                        <Link href={`${asPath}/${e.slug}`} key={i}>
-                            <div className="bg-base-200 p-5 rounded-sm mb-3 flex justify-between items-center">
+                        <div className="bg-base-200 px-5 py-3 rounded-sm mb-3 flex justify-between items-center"  key={i}>
+                            <Link href={`${asPath}/${e.slug}`}>
                                 <p>{e.title}</p>
+                            </Link>
+
+                            <div className="flex gap-1">
+                                <div className="btn btn-outline">
+                                    Edit
+                                </div>
+                                <div className="btn btn-outline">
+                                    Delete
+                                </div>
                             </div>
-                        </Link>
+                        </div>
                     ))}
                 </div>
             </div>
