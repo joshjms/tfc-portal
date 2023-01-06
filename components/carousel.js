@@ -29,7 +29,7 @@ export default function Carousel({ user, slides }) {
                 >
                     {slides.map((e, i) => (
                         <SwiperSlide key={i}>
-                            <CourseCard mod={e} progress={0} key={i} />
+                            <CourseCard mod={e} key={i} image_url={`/courses_wp/${(i+1).toString()}.jpg`} />
                         </SwiperSlide>
                     ))}
                 </Swiper>
@@ -48,7 +48,7 @@ export default function Carousel({ user, slides }) {
                 >
                     {slides.map((e, i) => (
                         <SwiperSlide key={i}>
-                            <CourseCard mod={e} progress={0} key={i} />
+                            <CourseCard mod={e} key={i} image_url={`/courses_wp/${(i+1).toString()}.jpg`} />
                         </SwiperSlide>
                     ))}
                 </Swiper>
@@ -82,7 +82,7 @@ export default function Carousel({ user, slides }) {
 
                     return (
                         <SwiperSlide key={i}>
-                            <CourseCard mod={e} progress={progress} key={i} />
+                            <CourseCard mod={e} key={i} image_url={`/courses_wp/${(i+1).toString()}.jpg`} />
                         </SwiperSlide>
                     );
                 })}
@@ -111,8 +111,8 @@ export default function Carousel({ user, slides }) {
                             : (read.length / e.chapter.length) * 100;
 
                     return (
-                        <SwiperSlide key={i}>
-                            <CourseCard mod={e} progress={progress} key={i} />
+                        <SwiperSlide key={i} className="mb-5">
+                            <CourseCard mod={e} key={i} image_url={`/courses_wp/${(i+1).toString()}.jpg`}/>
                         </SwiperSlide>
                     );
                 })}

@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { setCookie, getCookie, hasCookie, deleteCookie } from "cookies-next";
 
-import Navbar from "../../components/navbar";
-import Carousel from "../../components/carousel";
+import Navbar from "../components/navbar";
+import Carousel from "../components/carousel";
 import Head from "next/head";
-import { useCurrentUser } from "../../hooks/useCurrentUser";
+import { useCurrentUser } from "../hooks/useCurrentUser";
 
 export default function Learn({ topics }) {
     const [user, authenticated] = useCurrentUser();

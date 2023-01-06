@@ -14,7 +14,7 @@ module.exports = {
             {
                 tfc: {
                     ...require("daisyui/src/colors/themes")[
-                        "[data-theme=dracula]"
+                        "[data-theme=autumn]"
                     ],
                     "--rounded-box": "0.25rem",
                     "--rounded-btn": "0.125rem",
