@@ -28,6 +28,9 @@ export default function Navbar({ user }) {
                             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
                         >
                             <li>
+                                <Link href="/">Home</Link>
+                            </li>
+                            <li>
                                 <Link href="/learn/">Learn</Link>
                             </li>
                             <li tabIndex={0}>
@@ -78,13 +81,16 @@ export default function Navbar({ user }) {
                     </div>
                     <Link
                         href="/"
-                        className="btn btn-ghost normal-case text-xl font-black"
+                        className="btn btn-ghost normal-case text-xl font-black text-primary"
                     >
                         TFC
                     </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
+                        <li>
+                            <Link href="/">Home</Link>
+                        </li>
                         <li>
                             <Link href="/learn/">Learn</Link>
                         </li>
@@ -170,6 +176,9 @@ export default function Navbar({ user }) {
                         className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
                     >
                         <li>
+                            <Link href="/">Home</Link>
+                        </li>
+                        <li>
                             <Link href="/learn/">Learn</Link>
                         </li>
                         <li tabIndex={0}>
@@ -220,13 +229,16 @@ export default function Navbar({ user }) {
                 </div>
                 <Link
                     href="/"
-                    className="btn btn-ghost normal-case text-xl font-black"
+                    className="btn btn-ghost normal-case text-xl font-black text-primary"
                 >
                     TFC
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
+                    <li>
+                        <Link href="/">Home</Link>
+                    </li>
                     <li>
                         <Link href="/learn/">Learn</Link>
                     </li>

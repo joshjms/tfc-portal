@@ -12,9 +12,9 @@ module.exports = {
     daisyui: {
         themes: [
             {
-                halloween: {
+                tfc: {
                     ...require("daisyui/src/colors/themes")[
-                        "[data-theme=halloween]"
+                        "[data-theme=dracula]"
                     ],
                     "--rounded-box": "0.25rem",
                     "--rounded-btn": "0.125rem",
