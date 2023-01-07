@@ -18,13 +18,15 @@ export default function Create({ topics }) {
     const [loading, setLoading] = useState(false);
 
     const [user, authenticated] = useCurrentUser();
+    console.log(user);
+    console.log(authenticated);
     const router = useRouter();
 
     useEffect(() => {
         if ((user && user.is_staff === false) || authenticated === false) {
             router.push("/learn/");
         }
-    }, [user]);
+    }, [user, authenticated]);
 
     const md = require("markdown-it")()
         .use(require("markdown-it-katex"))
@@ -59,10 +61,10 @@ export default function Create({ topics }) {
                 }
             })
             .catch((error) => {
-                if(error.response.status === 400) {
+                if (error.response.status === 400) {
                     setMessage(error.response.data.message);
                 }
-                if(error.response.status === 401) {
+                if (error.response.status === 401) {
                     router.push("/learn/");
                 }
                 setLoading(false);
@@ -70,15 +72,26 @@ export default function Create({ topics }) {
     };
 
     const messageAlert = message ? (
-        <Alert content={message} close={()=>{setMessage("")}} />
+        <Alert
+            content={message}
+            close={() => {
+                setMessage("");
+            }}
+        />
     ) : null;
 
-    if (!user || loading) return <Loading />;
+    if (!user || loading)
+        return (
+            <>
+                <Head>Loading</Head>
+                <Loading />
+            </>
+        );
 
     return (
         <>
             <Head>
-                <title>TFC - Create a Chapter</title>
+                <title>Create a Chapter</title>
             </Head>
             {messageAlert}
             <Navbar user={user} />
