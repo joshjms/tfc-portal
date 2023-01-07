@@ -21,25 +21,23 @@ export default function Topic({ topic }) {
             <Navbar user={user} />
             <div className="w-[80%] mx-auto py-10">
                 <div className="w-80 lg:w-96 mb-10">
-                    <h2 className="font-light text-3xl mb-3">{topic.name}</h2>
+                    <h2 className="font-semibold text-3xl mb-3">{topic.name}</h2>
                     <p>{topic.desc}</p>
                 </div>
 
                 <div className="">
                     {topic.chapter.map((e, i) => (
-                        <div className="bg-base-200 px-5 py-3 rounded-sm mb-3 flex justify-between items-center"  key={i}>
-                            <Link href={`${asPath}/${e.slug}`}>
-                                <p>{e.title}</p>
-                            </Link>
+                        <div
+                            className="border px-5 py-3 rounded-xl mb-5 flex justify-between items-center shadow"
+                            key={i}
+                        >
+                            <h3 className="text-lg">{e.title}</h3>
 
-                            <div className="flex gap-1">
-                                <div className="btn btn-primary">
-                                    Edit
-                                </div>
-                                <div className="btn btn-outline">
-                                    Delete
-                                </div>
-                            </div>
+                            <Link href={`${asPath}/${e.slug}`}>
+                                <button className="btn btn-outline btn-success">
+                                    Read
+                                </button>
+                            </Link>
                         </div>
                     ))}
                 </div>

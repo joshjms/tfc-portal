@@ -14,44 +14,19 @@ export default function Chapter({ chapter }) {
         .use(require("markdown-it-sub"))
         .use(require("markdown-it-highlightjs"));
 
-    console.log(chapter.content);
-
     const result = md.render(chapter.content);
 
     return (
         <>
             <Head>
                 <title>{chapter.title}</title>
-                <link
-                    rel="stylesheet"
-                    href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"
-                />
-                <link
-                    rel="stylesheet"
-                    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown.css"
-                    integrity="sha512-Av8h36R+zgh5kcdZXursq5ZiKVOEQ/K/M4lZcFsbPJMKfrRaUXatxZERx2s6LzAfVUcWg90Yycl4Gsfdgfd29A=="
-                    crossorigin="anonymous"
-                    referrerpolicy="no-referrer"
-                />
-                <link
-                    rel="stylesheet"
-                    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css"
-                />
             </Head>
             <Navbar user={user} />
             <div className="w-[80%] md:w-[60%] lg:w-[50%] mx-auto py-10">
                 <div
-                    className="markdown-body font-sans bg-[#272935]"
+                    className="markdown-body font-sans bg-[#F2F2F2]"
                     dangerouslySetInnerHTML={{ __html: result }}
                 />
-
-                <hr className="my-5"></hr>
-
-                <div className="flex gap-2 flex-wrap">
-                    <button className="btn btn-success">Finish Reading</button>
-                    <button className="btn btn-ghost">Edit</button>
-                    <button className="btn btn-ghost">Delete</button>
-                </div>
             </div>
         </>
     );

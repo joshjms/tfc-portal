@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+h1, h2, h3, h4, h5, h6, a, p {
+    font-family: 'Inter', sans-serif;
+}
+
+.swiper-slide {
+    @apply ease-in-out duration-500
+}
+
+.swiper-slide-active .card {
+    @apply h-[100%]
+}
+
+.swiper-slide-active h2 {
+    @apply font-medium text-2xl
+}
+
+.swiper-slide-active .btn {
+    @apply block
+}
+

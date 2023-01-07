@@ -16,7 +16,7 @@ export default function Learn({ topics }) {
                 <title>TFC - Learn</title>
             </Head>
             <Navbar user={user} />
-            <div className="w-[80%] mx-auto py-10">
+            <div className="w-[80%] lg:w-[50%] mx-auto py-10">
                 <div className="flex h-max my-10">
                     <Carousel user={user} slides={topics} />
                 </div>
