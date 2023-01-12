@@ -13,9 +13,12 @@ module.exports = {
         themes: [
             {
                 tfc: {
-                    ...require("daisyui/src/colors/themes")[
-                        "[data-theme=autumn]"
-                    ],
+                    "color-scheme": "light",
+                    "--tw-text-opacity": 1,
+
+                    "--rounded-box": "0rem",
+                    "--rounded-btn": "0rem",
+                    "--rounded-badge": "0rem",
                 },
             },
         ],

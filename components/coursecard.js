@@ -9,7 +9,7 @@ export default function CourseCard({ mod, image_url }) {
 
     return (
         <>
-            <div className="card w-80 lg:w-96 h-[70%] bg-base-200/50 rounded-[2rem]">
+            <div className="card w-80 hover:bg-gray-100 rounded-none border">
                 <figure>
                     <img
                         src={image_url}
@@ -21,9 +21,9 @@ export default function CourseCard({ mod, image_url }) {
                     <p className="text-gray-600 uppercase text-xs font-semibold">
                         Courses
                     </p>
-                    <h2 className="font-medium text-primary">{mod.name}</h2>
+                    <h2 className="text-xl font-medium text-primary">{mod.name}</h2>
                     <Link href={"/learn/" + mod.slug}>
-                        <button className="btn btn-secondary btn-circle hidden text-center shadow-lg shadow-secondary absolute -top-5 right-5">
+                        <button className="bg-gray-800 btn-circle text-white flex items-center justify-center absolute -top-5 right-5">
                             <i className="fa-solid fa-book-open text-xl"></i>
                         </button>
                     </Link>

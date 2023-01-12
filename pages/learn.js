@@ -6,9 +6,11 @@ import Navbar from "../components/navbar";
 import Carousel from "../components/carousel";
 import Head from "next/head";
 import { useCurrentUser } from "../hooks/useCurrentUser";
+import CourseCard from "../components/coursecard";
 
 export default function Learn({ topics }) {
     const [user, authenticated] = useCurrentUser();
+    const topicList = topics.sort((a, b) => a.id - b.id);
 
     return (
         <>
@@ -16,9 +18,22 @@ export default function Learn({ topics }) {
                 <title>TFC - Learn</title>
             </Head>
             <Navbar user={user} />
-            <div className="w-[80%] lg:w-[50%] mx-auto py-10">
-                <div className="flex h-max my-10">
-                    <Carousel user={user} slides={topics} />
+            <div className="w-[80%] mx-auto py-10">
+                <h1 className="text-center text-3xl font-medium">Courses</h1>
+                <div className="flex flex-wrap gap-4 h-max my-10 justify-center">
+                    {topicList.map((e, i) => {
+                        return (
+                            <div className="w-80" key={i}>
+                                <CourseCard
+                                    mod={e}
+                                    key={i}
+                                    image_url={`/courses_wp/${(
+                                        i + 1
+                                    ).toString()}.jpg`}
+                                />
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </>
