@@ -13,7 +13,7 @@ export default function Home() {
     return (
         <>
             <Head>
-                <title>TFC - Competitive Programming Companion</title>
+                <title>TFC Fan Club</title>
             </Head>
             <Navbar user={user} />
             <div className="w-[80%] mx-auto py-10">

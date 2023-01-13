@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useCurrentUser } from "../hooks/useCurrentUser";
 import Pagination from "../components/pagination";
 import { useRouter } from "next/router";
+import Loading from "../components/loading";
 
 export default function QNA() {
     const [user, authenticated] = useCurrentUser();
@@ -56,6 +57,8 @@ export default function QNA() {
         getPosts();
     }, [router.query.page]);
 
+    if(isLoading) return <Loading />
+
     const content = isLoading ? (
         <div className="w-full flex justify-center">
             <LoadingComponent />
@@ -75,9 +78,12 @@ export default function QNA() {
                 {posts.map((e, i) => {
                     return (
                         <div className="w-full border p-5 mb-3" key={i}>
-                            <h3 className="text-xl font-medium mb-1 cursor-pointer">
-                                {e.title}
-                            </h3>
+                            <Link href={"/qna/" + e.id.toString()}>
+                                <h3 className="text-xl font-medium mb-1 cursor-pointer">
+                                    {e.title}
+                                </h3>
+                            </Link>
+
                             <p className="text-gray-600 text-xs mb-3">
                                 {e.content.slice(0, 100)}
                             </p>

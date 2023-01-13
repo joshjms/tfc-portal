@@ -11,8 +11,6 @@ export default function Pagination({ pageCount }) {
     const pagination = [Math.max(1, page - 2)]
     pagination.push(pagination[0] + 1, pagination[0] + 2, pagination[0] + 3, pagination[0] + 4)
 
-    console.log(pagination);
-
     return (
         <>
             <div className="w-full flex justify-center">

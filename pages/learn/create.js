@@ -59,11 +59,11 @@ export default function Create({ topics }) {
                 }
             })
             .catch((error) => {
-                if (error.response.status === 400) {
-                    setMessage(error.response.data.message);
-                }
                 if (error.response.status === 401) {
                     router.push("/learn/");
+                }
+                else {
+                    setMessage(error.response.data.message);
                 }
                 setLoading(false);
             });

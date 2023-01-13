@@ -73,12 +73,12 @@ export default function QNA() {
     return (
         <>
             <Head>
-                <title>Ask</title>
+                <title>Ask TFC</title>
             </Head>
             <Navbar user={user} />
             <div className="w-[80%] mx-auto py-10">
                 <h1 className="text-center text-3xl font-medium">
-                    Ask a Question
+                    Ask TFC
                 </h1>
                 <form onSubmit={handleSubmit}>
                     <p className="text-xs text-gray-600 mb-2 font-medium">
