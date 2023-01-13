@@ -14,7 +14,7 @@ export default function Pagination({ pageCount }) {
     return (
         <>
             <div className="w-full flex justify-center">
-                <div className="border flex">
+                <div className="border flex bg-white">
                     {pagination.map((e, i) => {
                         if (e <= 0 || e > pageCount)
                             return null;

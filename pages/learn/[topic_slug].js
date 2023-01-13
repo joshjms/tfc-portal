@@ -30,7 +30,7 @@ export default function Topic({ topic }) {
                 <div className="">
                     {topic.chapter.map((e, i) => (
                         <div
-                            className="border px-5 py-3 mb-5 flex justify-between items-center border"
+                            className="border px-5 py-3 mb-5 flex justify-between items-center bg-white"
                             key={i}
                         >
                             <h3 className="text-lg">{e.title}</h3>

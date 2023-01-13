@@ -9,7 +9,7 @@ export default function CourseCard({ mod, image_url }) {
 
     return (
         <>
-            <div className="card w-80 hover:bg-gray-100 rounded-none border">
+            <div className="card w-80 bg-white rounded-none border">
                 <figure>
                     <img
                         src={image_url}

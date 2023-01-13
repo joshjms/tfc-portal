@@ -87,14 +87,14 @@ export default function QNA() {
                     <input
                         type="text"
                         placeholder="Soal OSN 2022 D1-A"
-                        className="input input-bordered w-full mb-3 text-sm"
+                        className="input border border-gray-200 w-full mb-3 text-sm"
                         onChange={(e) => setTitle(e.target.value)}
                     />
                     <p className="text-xs text-gray-600 mb-2 font-medium">
                         Content
                     </p>
                     <textarea
-                        className="textarea textarea-bordered w-full mb-3 resize-none"
+                        className="textarea textarea-bordered w-full mb-3 resize-none border border-gray-200"
                         placeholder="Use Markdown and Latex"
                         onChange={(e) => setContent(e.target.value)}
                         rows={8}
@@ -128,8 +128,8 @@ export default function QNA() {
                     </div>
 
                     <div className="flex justify-end gap-2">
-                        <button type="submit" className="w-max px-3 py-2 border hover:cursor-pointer hover:bg-green-800 hover:text-white duration-300">
-                            Submit Question
+                        <button type="submit" className="w-max px-3 py-2 border hover:cursor-pointer bg-white hover:bg-green-800 hover:text-white duration-300">
+                            Post
                         </button>
                     </div>
                 </form>

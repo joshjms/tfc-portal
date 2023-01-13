@@ -23,7 +23,7 @@ export default function Learn({ topics }) {
                 <div className="flex flex-wrap gap-4 h-max my-10 justify-center">
                     {topicList.map((e, i) => {
                         return (
-                            <div className="w-80" key={i}>
+                            <div className="w-80 " key={i}>
                                 <CourseCard
                                     mod={e}
                                     key={i}

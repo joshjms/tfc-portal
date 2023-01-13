@@ -57,18 +57,13 @@ export default function QNA() {
         getPosts();
     }, [router.query.page]);
 
-    if(isLoading) return <Loading />
+    if (isLoading) return <Loading />;
 
-    const content = isLoading ? (
-        <div className="w-full flex justify-center">
-            <LoadingComponent />
-        </div>
-    ) : (
+    const content = (
         <>
             <div className="w-full mb-3 flex justify-end">
                 <Link href="/qna/ask">
-                    <div className="flex items-center px-3 py-2 border hover:bg-gray-800 hover:text-white duration-300 text-sm">
-                        <i class="fa-solid fa-plus font-extralight mr-1"></i>{" "}
+                    <div className="flex items-center px-3 py-2 border bg-white hover:bg-gray-800 hover:text-white duration-300 text-sm ">
                         Post Question
                     </div>
                 </Link>
@@ -77,7 +72,7 @@ export default function QNA() {
             <div className="my-5">
                 {posts.map((e, i) => {
                     return (
-                        <div className="w-full border p-5 mb-3" key={i}>
+                        <div className="w-full border p-5 mb-3 bg-white" key={i}>
                             <Link href={"/qna/" + e.id.toString()}>
                                 <h3 className="text-xl font-medium mb-1 cursor-pointer">
                                     {e.title}

@@ -22,3 +22,7 @@ input {
 .markdown-body ol {
     @apply list-decimal;
 }
+
+.markdown-body pre {
+    @apply border rounded p-1
+}

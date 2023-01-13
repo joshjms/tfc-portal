@@ -127,7 +127,7 @@ export default function Question() {
             {messageAlert}
             <Navbar user={user} />
             <div className="w-[80%] md:w-[60%] lg:w-[50%] mx-auto py-10">
-                <div className="p-5 border mb-5">
+                <div className="p-5 border mb-5 bg-white">
                     <h1 className="mb-1 text-3xl">{post.title}</h1>
                     <p className="text-xs text-gray-600 mb-5">
                         Question by{" "}

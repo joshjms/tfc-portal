@@ -24,7 +24,7 @@ export default function Chapter({ chapter }) {
             <Navbar user={user} />
             <div className="w-[80%] md:w-[60%] lg:w-[50%] mx-auto py-10">
                 <div
-                    className="markdown-body font-sans"
+                    className="markdown-body font-sans bg-slate-100"
                     dangerouslySetInnerHTML={{ __html: result }}
                 />
             </div>

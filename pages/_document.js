@@ -38,8 +38,13 @@ export default function Document() {
                     href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
                     rel="stylesheet"
                 ></link>
+                <script
+                    async
+                    src="https://cdn.tiny.cloud/1/q9tk00utsp1f1i00hu0y9dw0dr5g79mraetkwnas965hlzwe/tinymce/6/tinymce.min.js"
+                    referrerpolicy="origin"
+                ></script>
             </Head>
-            <body>
+            <body className="bg-slate-50 min-h-screen">
                 <Main />
                 <NextScript />
             </body>
